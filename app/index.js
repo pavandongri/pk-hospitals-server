@@ -27,14 +27,14 @@ const fruitSchema = mongoose.Schema({
 const fruitCollection = new mongoose.model("Fruit",fruitSchema)
 
 app.get("/", (req, res)=>{
-    res.send("ok alright")
+    res.json("ok alright")
 })
 app.post("/auth", async (req, res) => {
     const {userid, password} = req.body;
     const details = await fruitCollection.findOne({userid :userid});
     if (password === details.password){
         console.log("authenticated");
-        res.send({
+        res.json({
             authenticated: true,
             name: details.name,
             dob : details.dob,
